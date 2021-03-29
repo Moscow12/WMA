@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body>
+    
+    <div class="ui text container custom_table">
+        <h2 class="ui header">Login Here</h2>
+        <p>Please enter correct credentials</p>
+        <form action="#" class="ui form">
+            <div class="field">
+                <label>Username</label>
+                <div class="ui left icon input">
+                  <input type="text" id="username" placeholder="Username">
+                  <i class="user icon"></i>
+                </div>
+              </div>
+              <div class="field">
+                <label>Password</label>
+                <div class="ui left icon input">
+                  <input type="password">
+                  <i class="lock icon"></i>
+                </div>
+              </div>
+            <div class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" id="password" tabindex="0">
+                <label>I agree to the Terms and Conditions</label>
+            </div>
+            </div>
+            <br>
+            <button class="ui primary button" onclick="loginProcess()" type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="library/jquery.js"></script>
+    <script src="Semantic-UI-CSS-master/semantic.min.js"></script>
+
+    <script>
+        function loginProcess(){
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            if(username === ""){
+                alert("Enter Username");
+            }else if(password === ""){
+                alert("Enter Password")
+            }else{
+                
+            }
+        }
+    </script>
+</body>
+</html>
