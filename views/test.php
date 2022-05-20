@@ -35,6 +35,7 @@
   <div class="column">
   <fieldset class='content'>
             <legend align='center'>Register Type of Measure</legend>
+            <button  class="ui black pointing below ignored label" onclick="modalnow()">modal</button>
             <div class="ui form">
                 <div class="three fields">
                 <div class="field">
@@ -110,6 +111,7 @@
     <fieldset class='content'>
             <legend align='center'>Register Type of Measure</legend>
             <div class="ui form">
+              <a href="" class=""></a>
                 <div class="three fields">
                 <div class="field">
                     <label>Name Of Measure</label>
@@ -196,4 +198,10 @@
   
 </div>
    
-   
+<script>
+  function modalnow(){
+  $('.ui.modal')
+  .modal('show')
+;
+  }
+</script>

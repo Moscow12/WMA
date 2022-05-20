@@ -147,6 +147,113 @@ function loadimages(Department_ID){
         }
     });
 }
+
+function managedoctorinfo(){
+    $.ajax({
+        type: "GET",
+        url: "views/doctorspage.php",
+        data: {},
+        cache:false,
+        success: (response) => {
+            $("#main-content").html(response);
+            loaddoctors();
+            loadregisterdoctorform();
+        }
+    });
+}
+
+function loadregisterdoctorform(){
+    $.ajax({
+        type: "POST",
+        url: "./process/loadDocRequest.php",
+        data: {loadregisterdoctorform:''},
+        cache:false,
+        success: (response) => {
+            $("#imegeupdaload").html(response);
+        }
+    });
+}
+
+function addDoctorInfo(){
+    var file_input= $("#imageupload").val();
+    var fd = new FormData();
+    var files = $('#imageupload')[0].files[0];
+    fd.append('file',files);
+    
+    $.ajax({
+        type:'POST',
+        url:'./process/image_upload.php',
+        data:fd,
+        processData: false,
+        contentType: false,
+        success:function(responce){  
+            if(responce=='Nothing')  {
+                alert("Failed To upload image please try again");
+            } else{          
+                savedoctorinfo(responce);
+            }             
+        }
+    });
+}
+
+function savedoctorinfo(responce){
+    var name_of_Doctor = $("#name_of_Doctor").val();
+    var Title = $("#Title").val();
+    var Doctor_description = $("#Doctor_description").val();
+    var Speciality = $("#Speciality").val();
+    var Education = $("#Education").val();
+    var Experience = $("#Experience").val();
+    var Address = $("#Address").val();
+    var Phone_number = $("#Phone_number").val();
+    var Email = $("#Email").val();
+    $.ajax({
+        type: "POST",
+        url: "./process/loadDocRequest.php",
+        data: {name_of_Doctor:name_of_Doctor,responce_image_path:responce,Title:Title, Doctor_description:Doctor_description, Speciality:Speciality, Education:Education,Experience:Experience,Address:Address, Phone_number:Phone_number,Email:Email, savedoctorprfile:'' },
+        cache:false,
+        success: (response) => {
+            loaddoctors();
+        }
+    });
+}
+
+function loaddoctors(){
+    $.ajax({
+        type: "POST",
+        url: "./process/loadDocRequest.php",
+        data: { doctorsregister:'' },
+        cache:false,
+        success: (response) => {
+            $("#doctornames").html(response);
+        }
+    });
+}
+function previewdata(Employee_ID){
+    $.ajax({
+        type: "POST",
+        url: "./process/loadDocRequest.php",
+        data: {Employee_ID:Employee_ID, doctorsPreview:'' },
+        cache:false,
+        success: (response) => {
+            $("#modalview").html(response);
+            $('.ui.modal')
+                .modal('show')
+            ;
+        }
+    });
+   
+  
+}
+
+function readImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#Patient_Picture').attr('src', e.target.result).width('50%').height('50%');
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 function testpage(){
     $.ajax({
         type: "GET",

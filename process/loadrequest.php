@@ -95,7 +95,7 @@
                 <td>{$Descriptions}</td>
                 <td>";?>
                         <div class="ui small basic icon buttons">
-                        <button class="ui blue button"><i class="eye icon"></i></button>
+                        <button class="ui blue button" ><i class="eye icon"></i></button>
                         <button class="ui teal button"><i class="pencil icon"></i></button>
                         <button class="ui positive button" onclick="uploadimegese(<?php echo $Department_ID ?>)"><i class="upload icon"></i></button>
                         <button class="ui negative button"><i class="ban icon"></i></button>

@@ -16,7 +16,7 @@
     $uploadOk = 0;
     }
     if($uploadOk == 0){
-        echo 0;
+        echo 'Nothing';
     }else{
     /* Upload file */
     // echo 1;

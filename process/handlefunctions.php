@@ -10,3 +10,8 @@
         $data = new webdetails();
         return $data->fetchImageSectionData($imagedata);
     }
+
+    function getdoctorts($datarequest){
+        $data = new webdetails();
+        return $data->fetchDoctorsData($datarequest);
+    }

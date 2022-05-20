@@ -45,4 +45,19 @@
             $sql2 = "SELECT * FROM tbl_images $filter ";
             return $this->processQuery($sql2,"Failed to execute data 2");
         }
+
+        public function fetchDoctorsData($datarequest){
+            $obj = json_decode($datarequest);
+            $doctor_status = $obj->doctor_status;
+            $Employee_ID = $obj->Employee_ID;
+            $filter='WHERE';
+            $filter.= (strtolower($Employee_ID)=='all' || $Employee_ID==NULL) ? "" : "  Employee_ID='$Employee_ID'";
+            $filter.= (strtolower($doctor_status)=='all' || $doctor_status==NULL) ? "" : " AND doctor_status='$doctor_status'";
+            if($filter=='WHERE'){
+                $filter.="  1";
+            }
+
+            $sql3 = "SELECT * FROM tbl_employee $filter ";
+            return $this->processQuery($sql3,"Failed to execute data 3");
+        }
     }
