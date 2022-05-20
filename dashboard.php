@@ -39,7 +39,7 @@
                   <i class="dropdown icon"></i>
                   <div class="menu">
                     <div class="item" onclick="getMedicaldepartment()">Departmental</div>
-                    <div class="item">Doctors</div>
+                    <div class="item" onclick="managedoctorinfo()">Doctors</div>
                     <div class="item">Sections</div>
                     <div class="item">Service Section</div>
                     <div class="item">School Advertise</div>
