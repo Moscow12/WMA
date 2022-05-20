@@ -3,8 +3,8 @@
 // 1. Create a database connection
 $host = "localhost";
 $username = "root";
-$database = "food";
-$password = "@gpitg20ehms;/";
+$database = "wma";
+$password = "root";
 $conn= mysqli_connect($host,$username,$password,$database);
 if (!$conn) {
     die("Database connection failed to connect" .mysqli_connect_error($conn));

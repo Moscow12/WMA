@@ -34,7 +34,7 @@
             </div>
             </div>
             <br>
-            <button class="ui primary button" onclick="loginProcess()" type="button">Submit</button>
+            <button class="ui primary button" onclick="loginProcess()" type="button">LOGIN</button>
         </form>
     </div>
     <script src="library/jquery.js"></script>
@@ -52,6 +52,7 @@
                 $("#passwordd").css("border", "2px solid red");
                 exit()
             }
+            alert(username+'=='+password);
             $.ajax({
                 type:'POST',
                 url:'process/login.php',

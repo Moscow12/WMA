@@ -22,6 +22,7 @@
         <a class="item" onclick="makeRequisitions()">Requisition</a>
         <a class="item" onclick="grnAgainstIssueNote()">GRN Against Issue Note</a>
         <a class="item" onclick="getReports()">Reports</a>
+        
         <div class="right menu">
             <div class="ui compact menu">
                 <div class="ui simple dropdown item">
@@ -30,7 +31,20 @@
                   <div class="menu">
                     <div class="item" onclick="getMedicalSettings()">Add Measure type</div>
                     <div class="item">Add System User </div>
-                    <div class="item">Add Client</div>
+                    <div class="item" onclick='testpage()'>Test Page</div>
+                  </div>
+                </div>
+                <div class="ui simple dropdown item">
+                    Website management
+                  <i class="dropdown icon"></i>
+                  <div class="menu">
+                    <div class="item" onclick="getMedicaldepartment()">Departmental</div>
+                    <div class="item">Doctors</div>
+                    <div class="item">Sections</div>
+                    <div class="item">Service Section</div>
+                    <div class="item">School Advertise</div>
+                    <div class="item">Jop application</div>
+                    <div class="item">Events</div>
                   </div>
                 </div>
               </div>
@@ -44,47 +58,10 @@
 
     <script src="library/jquery.js"></script>
     <script src="Semantic-UI-CSS-master/semantic.min.js"></script>
+    <script src="js/jsfunc.js"></script>
 
     <script>
-        $(document).ready(() => {
-            loadHomeContents();
-        })
-        function getMedicalSettings(){
-            $.ajax({
-                type: "GET",
-                url: "views/addmeasure.html",
-                data: {},
-                cache:false,
-                success: (response) => {
-                    $("#main-content").html(response);
-                }
-            });
-        }
-
-        function signout(){
-            $.ajax({
-                type: "POST",
-                url: "process/logout.php",
-                data: {logout:''},
-                cache:false,
-                success: (response) => {
-                    if(response=="1"){
-                        window.open("index.php");
-                    }
-                }
-            });
-        }
-        function loadHomeContents(){
-            $.ajax({
-                type: "GET",
-                url: "views/home.html",
-                data: {},
-                cache:false,
-                success: (response) => {
-                    $("#main-content").html(response);
-                }
-            });
-        }
+     
     </script>
 
     <script>

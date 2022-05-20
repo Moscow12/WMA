@@ -37,7 +37,9 @@ fieldset{
     font-weight: 400;
     font-size: 14px;
 }
-
+fieldset .contents{
+    width: 40%;
+}
 legend{
     background-color: #2185d0;
     padding: 4px;
