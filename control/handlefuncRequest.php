@@ -60,4 +60,43 @@
             $sql3 = "SELECT * FROM tbl_employee $filter ";
             return $this->processQuery($sql3,"Failed to execute data 3");
         }
+
+        public function fetchService($datarequest){
+            $obj = json_decode($datarequest);
+            $Service_ID = $obj->Service_ID;
+            $filter='WHERE';
+            $filter.= (strtolower($Service_ID)=='all' || $Service_ID==NULL) ? "" : "  Service_ID='$Service_ID'";
+            if($filter=='WHERE'){
+                $filter.="  1";
+            }
+
+            $sql4 = "SELECT * FROM tbl_service $filter ";
+            return $this->processQuery($sql4,"Failed to execute data 4");
+        }
+
+        public function fetchAbout($datarequest){
+            $obj = json_decode($datarequest);
+            $About_ID = $obj->About_ID;
+            $filter='WHERE';
+            $filter.= (strtolower($About_ID)=='all' || $About_ID==NULL) ? "" : "  About_ID='$About_ID'";
+            if($filter=='WHERE'){
+                $filter.="  1";
+            }
+
+            $sql5 = "SELECT * FROM tbl_about_section $filter ";
+            return $this->processQuery($sql5,"Failed to execute data 5");
+        } 
+
+        public function fetchEvents($datarequest){
+            $obj = json_decode($datarequest);
+            $Event_ID = $obj->Event_ID;
+            $filter='WHERE';
+            $filter.= (strtolower($Event_ID)=='all' || $Event_ID==NULL) ? "" : "  Event_ID='$Event_ID'";
+            if($filter=='WHERE'){
+                $filter.="  1";
+            }
+
+            $sql6 = "SELECT * FROM tbl_Events $filter ";
+            return $this->processQuery($sql6,"Failed to execute data 6");
+        } 
     }

@@ -40,11 +40,12 @@
                   <div class="menu">
                     <div class="item" onclick="getMedicaldepartment()">Departmental</div>
                     <div class="item" onclick="managedoctorinfo()">Doctors</div>
-                    <div class="item">Sections</div>
-                    <div class="item">Service Section</div>
+                    <div class="item" onclick="aboutsection()">Sections</div>
+                    <div class="item" onclick="serviceSection()">Service Section</div>
+                    <div class="item" onclick="postevents()">Events</div>
                     <div class="item">School Advertise</div>
                     <div class="item">Jop application</div>
-                    <div class="item">Events</div>
+                    
                   </div>
                 </div>
               </div>

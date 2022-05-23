@@ -218,5 +218,243 @@
         // echo "</fieldset>";
     }
 
-    
+    #=========== section page request ===================================
+    if(isset($_POST['sectionregister'])){
+        ?>
+            <fieldset class='content'>
+                    <legend align='center'>Register Service</legend>
+                    <div class="ui form">
+                        <div class="one field">
+                            <div class="field">
+                                <label>Name Of Service</label>
+                                <input type="text" placeholder="Name Of Service" id='name_of_Service'>
+                            </div>
+                           
+                        </div>
+                        <div class="one field">
+                            <div class="field">
+                                <label>Description</label>
+                                <textarea   rows="1" id='Service_description'></textarea>
+                            </div>                           
+                        </div>
+                      
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Icon name</label>
+                                <input type="text" id="Icon_name">
+                            </div>
+                            <div class="right field" style="align-content: right;">
+                                     <label for="">.</label> 
+                                     <input type="button" value="saves" class="ui positive button" onclick="addService()">
+                               
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+        <?php
+    }
+
+    if(isset($_POST['sectionsave'])){
+        $name_of_Service = mysqli_real_escape_string($conn, $_POST['name_of_Service']);
+        $Service_description = mysqli_real_escape_string($conn, $_POST['Service_description']);
+
+        $Icon_name = mysqli_real_escape_string($conn, $_POST['Icon_name']);
+
+        $query3 = mysqli_query($conn, "INSERT INTO tbl_service (name_of_Service, Service_description, Icon_name) VALUES('$name_of_Service', '$Service_description', '$Icon_name')") or die(mysqli_error($conn));
+        if($query3){
+            echo "added";
+        }else{
+            echo "Failed";
+        }
+
+    }
+    if(isset($_POST['load_searvice'])){
+        $imagesection = $_POST['imagesection'];
+        if(isset($_POST['Service_ID'])){
+        $Service_ID = $_POST['Service_ID'];
+        }else{
+            $Service_ID='all';
+        }
+        $datarequest = array(
+            "Service_ID"=>$Service_ID
+        );
+        
+        $dataloaded = json_decode(getservice(json_encode($datarequest)) , true);
+        $num=1;
+        foreach($dataloaded as $data){
+            $name_of_Service = $data['name_of_Service'];
+            $Service_description = $data['Service_description'];
+            $Service_ID = $data['Service_ID'];
+            $Title = $data['Title'];
+            echo "<tr>
+                <td>{$num}</td>
+                <td>{$name_of_Service}</td>                
+                <td>{$Service_description}</td>
+                <td>";?>
+                        <div class="ui small basic icon buttons">
+                        <button class="ui blue button" ><i class="eye icon"></i></button>
+                        <button class="ui positive button" onclick="editservice(<?php echo $Service_ID ?>)"><i class="pencil icon"></i></button>
+                        <button class="ui negative button"><i class="ban icon"></i></button>
+                        </div>
+           <?php echo "   </td>
+            </tr>";
+            $num++;
+        }
+    }
+    #=========== End of section page  ===================================
+
+    #=========== about Section =================================
+    if(isset($_POST['aboutsectionreg'])){
+        ?>
+        <fieldset class='content'>
+            <legend align='center'>About Section</legend>
+            <div class="ui form">
+                
+                <div class="one  field">
+                    <div class="field">
+                        <label>Description</label>
+                        <textarea   rows="4" id='About_description'></textarea>
+                    </div>  
+                                             
+                </div>
+                
+                <div class="two fields">
+                    <div class="field">
+                        <label>Select Photo</label>
+                        <input type="file" id="imageupload">
+                    </div>
+                    <div class="right field" style="align-content: right;">
+                                <label for="">.</label> 
+                                <input type="button" value="saves" class="ui positive button" onclick="saveaboutphoto()">
+                        
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <?php
+
+    }
+
+    if(isset($_POST['aboutsectionsave'])){
+        $About_description = mysqli_real_escape_string($conn, $_POST['About_description']);
+        $image_responce = mysqli_real_escape_string($conn, $_POST['image_responce']);
+
+
+        $query4 = mysqli_query($conn, "INSERT INTO tbl_about_section (About_description, image_responce) VALUES('$About_description', '$image_responce')") or die(mysqli_error($conn));
+        if($query4){
+            echo "added";
+        }else{
+            echo "Failed";
+        }
+    }
+
+    if(isset($_POST['aboutsectionload'])){
+        if(isset($_POST['About_ID'])){
+            $About_ID = $_POST['About_ID'];
+        }else{
+            $About_ID='all';
+        }
+        $datarequest = array(
+            "About_ID"=>$About_ID
+        );
+        
+        $dataloaded = json_decode(getabout(json_encode($datarequest)) , true);
+        $num=1;
+        foreach($dataloaded as $data){
+            $About_description = $data['About_description'];
+            $image_responce = $data['image_responce'];
+            $About_ID = $data['About_ID'];
+            ?>
+            <div class="ui segment">
+                <img class="ui small left floated image" src="./images/dept/<?php echo $image_responce; ?>">
+                <p><?= $About_description ?><a href="#"><i class="pencil icon"></i></a></p>
+                
+            </div>
+            <?php
+        }
+    }
+    #=========== End about section =============================
+
+    #=========== start Event posmanagment =======================
+    if(isset($_POST['Eventssectionreg'])){
+        ?>
+        <fieldset class='content'>
+            <legend align='center'>Register EVent</legend>
+            <div class="ui form">
+                <div class="one field">
+                    <div class="field">
+                        <label>Event Title</label>
+                        <input type="text" placeholder="Event title" id='Event_Title'>
+                    </div>
+                    
+                </div>
+                <div class="one field">
+                    <div class="field">
+                        <label>Event Description</label>
+                        <textarea   rows="1" id='Event_discription'></textarea>
+                    </div>                           
+                </div>
+                
+                <div class="two fields">
+                    <div class="field">
+                        <label>Icon name</label>
+                        <input type="text" id="Icon_name">
+                    </div>
+                    <div class="right field" style="align-content: right;">
+                                <label for="">.</label> 
+                                <input type="button" value="saves" class="ui positive button" onclick="addEvents()">
+                        
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    <?php
+    }
+
+    if(isset($_POST['Eventssave'])){
+        $Events_description = $_POST['Events_description'];
+        $Event_Title = $_POST['Event_Title'];
+        $query5 = mysqli_query($conn, "INSERT INTO tbl_Events (Events_description, Event_Title)VALUES('$Events_description', '$Event_Title')") or die(mysqli_error($conn));
+        if($query5){
+            echo "added";
+        }else{
+            echo "Failed";
+        }
+    }
+    if(isset($_POST['Eventssectionload'])){
+        $imagesection = $_POST['imagesection'];
+        if(isset($_POST['Event_ID'])){
+        $Event_ID = $_POST['Event_ID'];
+        }else{
+            $Event_ID='all';
+        }
+        $datarequest = array(
+            "Event_ID"=>$Event_ID
+        );
+        
+        $dataloaded = json_decode(getEvents(json_encode($datarequest)) , true);
+        $num=1;
+        foreach($dataloaded as $data){
+            $Events_description = $data['Events_description'];
+            $Event_Title = $data['Event_Title'];
+            $Event_ID = $data['Event_ID'];
+            $Date_added = $data['Date_added'];
+            echo "<tr>
+                <td>{$num}</td>
+                <td>{$Event_Title}</td>
+                <td>{$Events_description}</td>               
+                
+                <td>{$Date_added}</td>
+                <td>";?>
+                        <div class="ui small basic icon buttons">
+                        <button class="ui blue button" ><i class="eye icon"></i></button>
+                        <button class="ui positive button" onclick="editservice(<?php echo $Event_ID ?>)"><i class="upload icon"></i></button>
+                        <button class="ui negative button"><i class="ban icon"></i></button>
+                        </div>
+           <?php echo "   </td>
+            </tr>";
+            $num++;
+        }
+    }
+    #=========== End of event post ==============================
 ?>
