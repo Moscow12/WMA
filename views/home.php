@@ -24,4 +24,16 @@
             </div>
         </div>
     </div>
+    <div class="column contents">
+        <div style="display: grid;grid-template-columns: 1fr 1fr;">
+            
+            <div>
+                <!-- <input type="text" id="data"> -->
+            </div>
+
+            <div>
+                <img src="images/default.png" width="73" style="float: right;" alt="">
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,6 +1,9 @@
 $(document).ready(() => {
     loadHomeContents();
+    datefunction();
+    setInterval(datefunction,  1000);
 })
+  
 function getMedicaldepartment(){
     $.ajax({
         type: "GET",
@@ -42,7 +45,7 @@ function signout(){
 function loadHomeContents(){
     $.ajax({
         type: "GET",
-        url: "views/home.html",
+        url: "views/home.php",
         data: {},
         cache:false,
         success: (response) => {
@@ -50,7 +53,22 @@ function loadHomeContents(){
         }
     });
 }
+  // ===TIME CALCULATOR ===
+  function datefunction(){
+    var DateValue = $("#date").val();
+    
+    var date = Math.abs((new Date(DateValue).getTime() / 1000).toFixed(0));
+    var Curdate = Math.abs((new Date().getTime() / 1000).toFixed(0));
+    var diff = Curdate- date;
+    var days = Math.floor(diff / 86400);
+    var hours = Math.floor(diff / 3600) % 24;
+    var minutes = Math.floor(diff / 60) % 60;   
 
+    var seconds = diff % 60; 
+     var records= days + " Days, "+hours+ ": "+minutes+ ": "+seconds;
+     $("#data").val(records);
+}
+//  =====END TIME CALCULATOR ===
 function adddepartament(){
     var name_of_department = $("#name_of_department").val();
     var Title =$("#Title").val();

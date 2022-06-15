@@ -178,8 +178,6 @@
             "status"=>$status
         );
         $dataloaded = json_decode(getdepartment(json_encode($datarequest)) , true);
-        // echo " <fieldset class='content'>
-        // <legend align='center'>UPLOAD IMAGE FOR  <b>". strtoupper($dataloaded[0]['name_of_department'])."</b></legend>";
         $getimages = json_decode(getsectionimages(json_encode($imagedata)), true);
         foreach($getimages as $image){
             $image_path = $image['image_path'];

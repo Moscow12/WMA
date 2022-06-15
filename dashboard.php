@@ -54,9 +54,11 @@
             </div>
         </div>
     </div>
-
-    <div id="main-content"></div>
-
+<input type="hidden" id="date" value="<?php echo date("Y-m-d"); ?>">
+    <div id="main-content">
+   
+    </div>
+    <input type="text" id="data">
     <script src="library/jquery.js"></script>
     <script src="Semantic-UI-CSS-master/semantic.min.js"></script>
     <script src="js/jsfunc.js"></script>
